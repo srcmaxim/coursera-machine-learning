@@ -143,11 +143,63 @@ L=eye(N) with 1,1=0
 
 J(θ) = −1/m ∑ [i=1m] [y(i) log(hθ(x(i)))+(1−y(i)) log(1−hθ(x(i)))]+λ/2m ∑ [j=1n] θ^2j
 
+# Functions
 
+```
+function g = sigmoid(z)
 
+g = 1 ./ (1 + e .^ -z);
 
+end
+```
 
+```
+function p = predict(theta, X)
 
+p = sigmoid(X*theta)>=0.5;
+
+end
+```
+
+```
+function plotData(X, y)
+
+figure; hold on;
+
+pos = find(y == 1);
+neg = find(y == 0);
+
+plot(X(pos, 1), X(pos, 2), 'k+', 'LineWidth', 2, 'MarkerSize', 7);
+plot(X(neg, 1), X(neg, 2), 'ko', 'MarkerFaceColor', 'y', 'MarkerSize', 7);
+
+hold off;
+
+end
+```
+
+```
+function [J, grad] = costFunction(theta, X, y)
+
+m = length(y);
+h = sigmoid(X * theta);
+J = ((-y)'*log(h) - (1-y)'*log(1-h))/m;
+grad = ((h - y)'*X)/m;
+
+end
+```
+
+```
+function [J, grad] = costFunctionReg(theta, X, y, lambda)
+
+m = length(y);
+h = sigmoid(X*theta);
+theta1 = [0 ; theta(2:size(theta), :)];
+p = lambda*(theta1'*theta1)/(2*m);
+J = ((-y)'*log(h) - (1-y)'*log(1-h))/m + p;
+grad = (X'*(h - y)+lambda*theta1)/m;
+
+end
+```
 
 
 
