@@ -25,7 +25,7 @@ X*Q'-Y
 
 __Vectorization of gradient descent__:
 Qj := Qj - a ⋅ (d / (dQj)) ⋅ J(Q)
-Qj := Qj - a ⋅ (d / (dQj)) ⋅ 1 / (2m) ⋅ E[i=1,m](hq(xi) - yi)^2
+Qj := Qj - a ⋅ (d / (dQj)) ⋅ 1 / (2m) ⋅ E[i=1,m] (hq(xi) - yi)^2
 Qj := Qj - a / m ⋅ E[i=1,m] (hq(xi) - yi) ⋅ Xij
 
 Xij = j element of X array
